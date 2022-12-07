@@ -3,7 +3,6 @@ import { usePlane } from "@react-three/cannon";
 import { groundTexture } from "../assets/textures";
 import { RepeatWrapping } from "three";
 import { useStore } from "../hooks/useStore";
-import { ThreeEvent } from '@react-three/fiber';
 
 interface IGround {}
 

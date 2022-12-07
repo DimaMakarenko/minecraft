@@ -22,11 +22,11 @@ const actionByKey = (key: string) => {
     KeyA: 'moveLeft',
     KeyD: 'moveRight',
     Space: 'jump',
-    Dirt: 'dirt',
-    Grass: 'grass',
-    Glass: 'glass',
-    Wood: 'wood',
-    Log: 'log',
+    Digit1: 'dirt',
+    Digit2: 'grass',
+    Digit3: 'glass',
+    Digit4: 'wood',
+    Digit5: 'log',
   }
 
   return keyActionMap[key];

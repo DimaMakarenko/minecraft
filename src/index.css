@@ -53,5 +53,19 @@ body {
   color: white;
   font-size: 30px;
   -webkit-text-stroke: 1px black; /* width and color */
+}
+
+.texture-selector {
+  display: flex;
+  align-items: center;
+}
+.texture-selector img {
+  width: 50px;
+  height: 50px;
+}
+.texture-selector img.active {
+  border: 5px solid red;
+  width: 60px;
+  height: 60px;
 
 }

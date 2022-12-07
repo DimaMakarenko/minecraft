@@ -12,11 +12,16 @@ interface WorldState {
   cubes: TCube[];
   addCube: (x: number, y: number, z: number) => void;
   removeCube: (x: number, y: number, z: number) => void;
+  setTexture: (texture: string) => void
+  saveWorld: () => void
 }
+
+const getLocalStorage = (key: string) => JSON.parse(window.localStorage.getItem(key) || '')
+const setLocalStorage = (key: string, value: unknown) => window.localStorage.setItem(key, JSON.stringify(value))
 
 export const useStore = create<WorldState>((set) => ({
   texture: "dirt",
-  cubes: [],
+  cubes: getLocalStorage('cubes') || [],
   addCube: (x, y, z) => {
     set((prev) => ({
       cubes: [
@@ -39,7 +44,20 @@ export const useStore = create<WorldState>((set) => ({
       ),
     }));
   },
-  setCube: () => { },
-  saveWorld: () => { },
-  resetWorld: () => { },
+  setTexture: (texture) => {
+    set(() => ({
+      texture
+    }))
+  },
+  saveWorld: () => {
+    set((prev) => {
+      setLocalStorage('cubes', prev);
+      return prev;
+    })
+  },
+  resetWorld: () => {
+    set(() => ({
+      cubes: []
+    }))
+  },
 }));
