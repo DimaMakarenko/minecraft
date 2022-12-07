@@ -11,7 +11,7 @@ export const Cube: FC<ICube> = ({ position, texture }) => {
     position,
   }));
 
-  const [addCube] = useStore((state) => [state.addCube]);
+  const [addCube, removeCube] = useStore((state) => [state.addCube, state.removeCube]);
 
   const handleCubeClick = (e: any) => {
     e.stopPropagation();
@@ -19,7 +19,9 @@ export const Cube: FC<ICube> = ({ position, texture }) => {
     const clickedFace = Math.floor(e.faceIndex / 2);
     const { x, y, z } = ref.current.position;
 
-    if (clickedFace === 0) {
+    if(e.altKey){
+      removeCube(x,y,z);
+    } else if (clickedFace === 0) {
       return addCube(x + 1, y, z);
     } else if (clickedFace === 1) {
       return addCube(x - 1, y, z);
