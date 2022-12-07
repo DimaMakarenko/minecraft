@@ -1,17 +1,19 @@
 import { FC } from "react";
 import { usePlane } from "@react-three/cannon";
 import { groundTexture } from "../assets/textures";
-import { RepeatWrapping, NearestFilter } from "three";
+import { RepeatWrapping } from "three";
+// import { useStore } from "../hooks/useStore";
 
 interface IGround {}
 
 export const Ground: FC<IGround> = () => {
+  // const {addCube} = useStore();
+
   const [ref] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
     position: [0, 0, 0],
   }));
 
-  groundTexture.magFilter = NearestFilter;
   groundTexture.wrapS = RepeatWrapping;
   groundTexture.wrapT = RepeatWrapping;
   groundTexture.repeat.set(100, 100);

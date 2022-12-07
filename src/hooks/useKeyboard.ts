@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useState } from "react"
 
 
-enum Keys {
-  KeyW = 'KeyW',
-  KeyS = 'KeyS',
-  KeyA = 'KeyA',
-  KeyD = 'KeyD',
-  Space = 'Space',
-  Dirt = 'Dirt',
-  Grass = 'Grass',
-  Glass = 'Glass',
-  Wood = 'Wood',
-  Log = 'Log',
-}
+// enum Keys {
+//   KeyW = 'KeyW',
+//   KeyS = 'KeyS',
+//   KeyA = 'KeyA',
+//   KeyD = 'KeyD',
+//   Space = 'Space',
+//   Dirt = 'Dirt',
+//   Grass = 'Grass',
+//   Glass = 'Glass',
+//   Wood = 'Wood',
+//   Log = 'Log',
+// }
 type IKeyActionMap = Record<string, string>
 
 const actionByKey = (key: string) => {
