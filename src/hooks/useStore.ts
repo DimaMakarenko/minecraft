@@ -15,17 +15,7 @@ interface WorldState {
 
 export const useStore = create<WorldState>((set) => ({
   texture: "dirt",
-  cubes: [
-    {
-      key: nanoid(),
-      position: [1, 0.5, 1],
-      texture: 'dirt'
-    },
-    {
-      key: nanoid(),
-      position: [2, 0.5, 1],
-      texture: 'wood'
-    }],
+  cubes: [],
   addCube: (x: number, y: number, z: number) => {
     set((prev) => ({
       cubes: [
