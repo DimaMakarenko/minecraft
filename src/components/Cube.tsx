@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { TCube, useStore } from "../hooks/useStore";
 import { useBox } from "@react-three/cannon";
 import * as textures from "../assets/textures";
@@ -6,12 +6,17 @@ import * as textures from "../assets/textures";
 interface ICube extends TCube {}
 
 export const Cube: FC<ICube> = ({ position, texture }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const [ref] = useBox(() => ({
     type: "Static",
     position,
   }));
 
-  const [addCube, removeCube] = useStore((state) => [state.addCube, state.removeCube]);
+  const [addCube, removeCube] = useStore((state) => [
+    state.addCube,
+    state.removeCube,
+  ]);
 
   const handleCubeClick = (e: any) => {
     e.stopPropagation();
@@ -19,8 +24,8 @@ export const Cube: FC<ICube> = ({ position, texture }) => {
     const clickedFace = Math.floor(e.faceIndex / 2);
     const { x, y, z } = ref.current.position;
 
-    if(e.altKey){
-      removeCube(x,y,z);
+    if (e.altKey) {
+      removeCube(x, y, z);
     } else if (clickedFace === 0) {
       return addCube(x + 1, y, z);
     } else if (clickedFace === 1) {
@@ -39,11 +44,30 @@ export const Cube: FC<ICube> = ({ position, texture }) => {
   // @ts-ignore
   const activeTexture = textures[texture + "Texture"];
 
-  return (
-    <mesh ref={ref} onClick={handleCubeClick}>
-      <boxGeometry attach="geometry" />
+  const handleOnPointMove = (e: any) => {
+    e.stopPropagation();
+    setIsHovered(true);
+  };
 
-      <meshStandardMaterial attach="material" map={activeTexture} />
+  const handleOnPointOut = (e: any) => {
+    e.stopPropagation();
+    setIsHovered(false);
+  };
+  return (
+    <mesh
+      ref={ref}
+      onClick={handleCubeClick}
+      onPointerMove={handleOnPointMove}
+      onPointerOut={handleOnPointOut}
+    >
+      <boxGeometry attach="geometry" />
+      <meshStandardMaterial
+        attach="material"
+        map={activeTexture}
+        color={isHovered ? "grey" : "white"}
+        transparent={true}
+        opacity={texture === "glass" ? 0.6 : 1}
+      />
     </mesh>
   );
 };
