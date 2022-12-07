@@ -35,7 +35,6 @@ export const TextureSelector: FC = () => {
   }, [setTexture, dirt, grass, glass, wood, log, activeTexture]);
 
   useEffect(() => {
-    console.log("effect");
     setIsVisible(true);
 
     const visibilityTimeout = setTimeout(() => {
@@ -47,7 +46,6 @@ export const TextureSelector: FC = () => {
     };
   }, [activeTexture]);
 
-  console.log("isVisible", isVisible);
   return (
     <>
       {isVisible && (

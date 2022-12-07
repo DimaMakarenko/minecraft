@@ -53,6 +53,7 @@ export const Cube: FC<ICube> = ({ position, texture }) => {
     e.stopPropagation();
     setIsHovered(false);
   };
+  
   return (
     <mesh
       ref={ref}

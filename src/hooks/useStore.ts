@@ -21,7 +21,6 @@ const getLocalStorage = (key: string) => window?.localStorage?.getItem?.(key) &&
 
 const setLocalStorage = (key: string, value: unknown) => window.localStorage.setItem(key, JSON.stringify(value))
 
-console.log('getLocalStorage()', getLocalStorage('cubes'))
 export const useStore = create<WorldState>((set) => ({
   texture: "dirt",
   cubes: getLocalStorage('cubes') || [],
