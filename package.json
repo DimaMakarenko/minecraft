@@ -2,6 +2,7 @@
   "name": "minecraft",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dimamakarenko.github.io/minecraft/",
   "dependencies": {
     "@react-three/cannon": "^6.5.0",
     "@react-three/drei": "^9.46.3",
@@ -26,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,7 +52,8 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {
-    "@types/three": "^0.146.0"
+    "@types/three": "^0.146.0",
+    "gh-pages": "^4.0.0"
   },
   "author": "",
   "license": "ISC"
